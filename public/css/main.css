@@ -99,7 +99,7 @@ main {
   cursor: pointer;
   font-size: 1.1rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%;
+  width: 100px;
 }
 
 .button:hover {
@@ -110,4 +110,21 @@ main {
 .button:active {
   background-color: #2e7d32;
   transform: translateY(0);
+}
+
+.products-list {
+  list-style-type: none;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.product {
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

@@ -7,37 +7,46 @@
     <main>
       <%- include('partials/navigation', { menuLinks: menuLinks, activeLinkPath:
       activeLinkPath }); %>
+
       <h1 class="heading">Products</h1>
+
       <% if (products?.length > 0) { %>
-      <ul>
+      <ul class="products-list">
         <% products.forEach(product => { %>
-        <li>
-          Name: <%= product.name %>, Description: <%= product.description %>
+        <li class="product">
+          <div>
+            <strong><%= product.name %></strong>: <%= product.description %>
+          </div>
+          <div>
+            <button
+              class="button"
+              onclick="deleteProduct('<%= product.name %>')"
+            >
+              Delete
+            </button>
+          </div>
         </li>
-        <% }); %>
+        <% }) %>
       </ul>
       <% } else { %>
-      <br />
-      <div>No products available.</div>
-      <% }%>
+      <p>No products available.</p>
+      <% } %>
     </main>
-  </body>
-  <script>
-    function deleteProduct(name) {
-      if (!confirm(`Are you sure you want to remove ${name}?`)) {
-        return;
-      }
 
-      fetch(`/products/${name}`, {
-        method: "DELETE",
-      }).then((response) => {
-        console.log(response);
-        if (response.ok) {
-          window.location.reload();
-        } else {
-          alert("Error while removing product.");
-        }
-      });
-    }
-  </script>
+    <script>
+      function deleteProduct(name) {
+        if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+
+        fetch(`/products/${name}`, {
+          method: "DELETE",
+        }).then((response) => {
+          if (response.ok) {
+            location.reload();
+          } else {
+            alert("Failed to delete product.");
+          }
+        });
+      }
+    </script>
+  </body>
 </html>
