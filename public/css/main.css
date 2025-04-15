@@ -116,6 +116,7 @@ main {
   list-style-type: none;
   max-width: 600px;
   margin-inline: auto;
+  margin-block: 0;
 }
 
 .product {
